@@ -22,14 +22,14 @@ function _connect (cb) {
 */
 module.exports.insertOne = function (collection, obj, cb) {
   _connect((db, client) => {
-    db.collection(collection).insertOne(obj, (err, results) => cb(err, results) )
+    db.collection(collection).insertOne(obj, (err, results) => cb(err, results))
     client.close()
   })
 }
 /* --------------- insert Multiple --------------- */
 module.exports.insertMany = function (collection, arr, cb) {
   _connect((db, client) => {
-    db.collection(collection).insertMany(arr, (err, results) => cb(err, results) )
+    db.collection(collection).insertMany(arr, (err, results) => cb(err, results))
     client.close()
   })
 }
@@ -43,7 +43,13 @@ module.exports.insertMany = function (collection, arr, cb) {
 */
 module.exports.findOneById = function (collection, id, cb) {
   _connect((db, client) => {
-    db.collection(collection).findOne({ _id: mongodb.ObjectId(id) }, (err, results) => cb(err, results) )
+    db.collection(collection).findOne({ _id: mongodb.ObjectId(id) }, (err, results) => cb(err, results))
     client.close()
+  })
+}
+/* --------------- query one --------------- */
+module.exports.findOne = function (collection, obj, cb) {
+  _connect((db, client) => {
+    db.collection(collection).findOne(obj, (err, results) => cb(err, results))
   })
 }
