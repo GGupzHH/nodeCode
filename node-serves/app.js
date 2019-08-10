@@ -1,9 +1,8 @@
 const express = require('express')
 const router = require('./router/router')
-const { insertOne, insertMany, findOneById, findOne, findMultiple,updateOneById } = require('./config/mongodb')
+const { insertOne, insertMany, findOneById, findOne, findMultiple,updateOneById, updateOne } = require('./config/mongodb')
 const app = express()
 // app.use()
-
 
 // console.log(insertOne)
 // insertOne('user', {userName: 'zs', password: '123'}, (err, results) => {
@@ -22,6 +21,9 @@ const app = express()
 //   console.log(results)
 // })
 // findMultiple('user', {userName: 'zs'}, (err, result) => {
+//   console.log(result)
+// })
+// updateOne('user', {name: '11111111111'}, {password: '111111'}, (err, result) => {
 //   console.log(result)
 // })
 app.listen('8888', () => {

@@ -20,14 +20,14 @@ function _connect (cb) {
 * 操作数据库的回调
 */
 /* --------------- insert One --------------- */
-module.exports.insertOne = function (collection, obj, cb) {
+module.exports.insertOne = (collection, obj, cb) => {
   _connect((db, client) => {
     db.collection(collection).insertOne(obj, (err, results) => cb(err, results))
     client.close()
   })
 }
 /* --------------- insert Multiple --------------- */
-module.exports.insertMany = function (collection, arr, cb) {
+module.exports.insertMany = (collection, arr, cb) => {
   _connect((db, client) => {
     db.collection(collection).insertMany(arr, (err, results) => cb(err, results))
     client.close()
@@ -41,14 +41,14 @@ module.exports.insertMany = function (collection, arr, cb) {
 * 操作数据库的回调
 */
 /* --------------- query id --------------- */
-module.exports.findOneById = function (collection, id, cb) {
+module.exports.findOneById = (collection, id, cb) => {
   _connect((db, client) => {
     db.collection(collection).findOne({ _id: mongodb.ObjectId(id) }, (err, results) => cb(err, results))
     client.close()
   })
 }
 /* --------------- query one --------------- */
-module.exports.findOne = function (collection, obj, cb) {
+module.exports.findOne = (collection, obj, cb) => {
   _connect((db, client) => {
     db.collection(collection).findOne(obj, (err, results) => cb(err, results))
     client.close()
@@ -67,10 +67,18 @@ module.exports.findMultiple  = (collection, obj, cb) => {
 
 
 /* --------------- modify one id --------------- */
-module.exports.updateOneById = function (collection, id, upobj, cb) {
+module.exports.updateOneById = (collection, id, upobj, cb) => {
   _connect((db, client) => {
     db.collection(collection).updateOne({ _id: mongodb.ObjectId(id) }, {$set: upobj}, (err, results) => cb(err, results))
     client.close()
   })
 }
-
+/* --------------- modify one --------------- */
+module.exports.updateOne = (collection, whereobj, upobj, cb) => {
+  _connect((db, client) => {
+    console.log(whereobj)
+    console.log(upobj)
+    db.collection(collection).updateOne(whereobj, {$set: upobj}, (err, results) => cb(err, results))
+    client.close()
+  })
+}
