@@ -1,6 +1,6 @@
 const express = require('express')
 const router = require('./router/router')
-const { insertOne, insertMany, findOneById, findOne } = require('./config/mongodb')
+const { insertOne, insertMany, findOneById, findOne, updateOneById } = require('./config/mongodb')
 const app = express()
 // app.use()
 
@@ -18,6 +18,9 @@ console.log(insertOne)
 // findOne('user', {userName: 'zs'}, (err, results) => {
 //   console.log(results)
 // })
+updateOneById('user', '5d4e8079ece99d193ca2101b', {name: '11111111111'}, (err, results) => {
+  console.log(results)
+})
 app.listen('8888', () => {
   console.log('It is Serve -------------')
 })

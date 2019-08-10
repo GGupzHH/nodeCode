@@ -51,6 +51,15 @@ module.exports.findOneById = function (collection, id, cb) {
 module.exports.findOne = function (collection, obj, cb) {
   _connect((db, client) => {
     db.collection(collection).findOne(obj, (err, results) => cb(err, results))
+    client.close()
   })
 }
 
+
+/* --------------- modify one id --------------- */
+module.exports.updateOneById = function (collection, id, upobj, cb) {
+  _connect((db, client) => {
+    db.collection(collection).updateOne({ _id: mongodb.ObjectId(id) }, {$set: upobj}, (err, results) => cb(err, results))
+    client.close()
+  })
+}
