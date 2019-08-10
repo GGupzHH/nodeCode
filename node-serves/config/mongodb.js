@@ -14,12 +14,12 @@ function _connect (cb) {
   })
 }
 
-/* --------------- insert One --------------- */
 /*
-  * collection 要插入的集合
-  * obj 插入的数据
-  * 操作数据库的回调
+* collection 要插入的集合
+* obj 插入的数据
+* 操作数据库的回调
 */
+/* --------------- insert One --------------- */
 module.exports.insertOne = function (collection, obj, cb) {
   _connect((db, client) => {
     db.collection(collection).insertOne(obj, (err, results) => cb(err, results))
@@ -35,12 +35,12 @@ module.exports.insertMany = function (collection, arr, cb) {
 }
 
 
-/* --------------- query id --------------- */
 /*
-  * collection 要插入的集合
-  * id 查找的数据
-  * 操作数据库的回调
+* collection 要插入的集合
+* id 查找的数据
+* 操作数据库的回调
 */
+/* --------------- query id --------------- */
 module.exports.findOneById = function (collection, id, cb) {
   _connect((db, client) => {
     db.collection(collection).findOne({ _id: mongodb.ObjectId(id) }, (err, results) => cb(err, results))
@@ -54,6 +54,16 @@ module.exports.findOne = function (collection, obj, cb) {
     client.close()
   })
 }
+/* --------------- query Multiple --------------- */
+module.exports.findMultiple  = (collection, obj, cb) => {
+  _connect((db, client) => {
+    console.log(obj)
+    db.collection(collection).find(obj).toArray((err, results) => cb(err, results))
+    // let res = db.collection(collection).find(obj).pretty()
+    // console.log(res)
+    client.close()
+  })
+}
 
 
 /* --------------- modify one id --------------- */
@@ -63,3 +73,4 @@ module.exports.updateOneById = function (collection, id, upobj, cb) {
     client.close()
   })
 }
+
