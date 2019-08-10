@@ -27,4 +27,12 @@ module.exports.insertOne = function (collection, obj, cb) {
     client.close()
   })
 }
-/* --------------- insert One --------------- */
+/* --------------- insert Multiple --------------- */
+module.exports.insertMany = function (collection, arr, cb) {
+  _connect((db, client) => {
+    db.collection(collection).insertMany(arr, (err, results) => {
+      cb(err, results)
+    })
+    client.close()
+  })
+}
