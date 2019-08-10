@@ -12,6 +12,11 @@
 ```txt
   node 创建服务，接收各种请求的demo
 ```
++ &#x1F697; Project Startup
+```txt
+  1. npm install
+  2. npm run serve
+```
 **&#x1F381;  node-serves**
 
 + &#x1F6EB; node + mongodb + serve
