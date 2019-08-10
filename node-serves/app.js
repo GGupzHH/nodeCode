@@ -15,9 +15,9 @@ console.log(insertOne)
 // findOneById('user', '5d4e8079ece99d193ca2101b', (err, results) => {
 //   console.log(results)
 // })
-findOne('user', {userName: 'zs'}, (err, results) => {
-  console.log(results)
-})
+// findOne('user', {userName: 'zs'}, (err, results) => {
+//   console.log(results)
+// })
 app.listen('8888', () => {
   console.log('It is Serve -------------')
 })

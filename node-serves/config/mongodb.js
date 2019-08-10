@@ -53,3 +53,4 @@ module.exports.findOne = function (collection, obj, cb) {
     db.collection(collection).findOne(obj, (err, results) => cb(err, results))
   })
 }
+
