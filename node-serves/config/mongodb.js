@@ -70,8 +70,32 @@ module.exports.updateOneById = (collection, id, upobj, cb) => {
 /* --------------- modify one --------------- */
 module.exports.updateOne = (collection, whereobj, upobj, cb) => {
   _connect((db) => {
-    console.log(whereobj)
-    console.log(upobj)
     db.collection(collection).updateOne(whereobj, {$set: upobj}, (err, results) => cb(err, results))
+  })
+}
+/* --------------- modify Multiple --------------- */
+module.exports.updateMultiple = (collection, whereobj, upobj, cb) => {
+  _connect((db) => {
+    db.collection(collection).updateMany(whereobj, {$set: upobj}, (err, results) => cb(err, results))
+  })
+}
+
+
+/* --------------- delete one id --------------- */
+module.exports.deleteOneById = (collection, id, cb) => {
+  _connect((db) => {
+    db.collection(collection).deleteOne({ _id: mongodb.ObjectId(id) }, (err, results) => cb(err, results))
+  })
+}
+/* --------------- delete one --------------- */
+module.exports.deleteOne = (collection, whereobj, cb) => {
+  _connect((db) => {
+    db.collection(collection).deleteOne(whereobj, (err, results) => cb(err, results))
+  })
+}
+/* --------------- delete Multiple --------------- */
+module.exports.deleteMultiple = (collection, whereobj, cb) => {
+  _connect((db) =>{
+    db.collection(collection).deleteMany(whereobj, (err, results) => cb(err, results))
   })
 }
