@@ -5,5 +5,6 @@ const router = express.Router()
 router
   .post(`/logon`, controllesConfig.entry.logon)
   .post(`/login`, controllesConfig.entry.login)
+  .get(`peojectLst`)
 
 module.exports = router
