@@ -1,6 +1,8 @@
 const express = require('express')
 const router = require('./router/router')
 const bodyParser = require('body-parser')
+const jwt = require('jsonwebtoken')
+const filter = require('./config/filter')
 const app = express()
 
 
@@ -13,7 +15,33 @@ app.use((request, response, next) => {
   console.log(request.url)
   console.log(request.headers)
   console.log(request.body)
-  next()
+  if (request.url !== `/login` && request.url !== `/logon`) {
+    try {
+      let tokenend = jwt.verify(
+        request.headers.token,
+        'GGupzhh'
+      )
+      filter(tokenend, request.headers.token, (ret) => {
+        if (ret) {
+          next()
+        } else {
+          response.send({
+            code: 403,
+            msg: 'Please login',
+            date: []
+          })
+        }
+      })
+    } catch {
+      response.send({
+        code: 403,
+        msg: 'Please login',
+        date: []
+      })
+    }
+  } else {
+    next()
+  }
 })
 /* Routing mount */
 app.use(router)
