@@ -17,5 +17,12 @@ module.exports.login = (request, response, err) => {
     })
   })
 }
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoienNzIiwiaWF0IjoxNTY1NjYzMjY4LCJleHAiOjE1NjU2NjY4Njh9.EGztivvNxY1C5AKzLoa3CVTsVFAfJmDb2RS4u_AElZg
+module.exports.logout = (request, response, err) => {
+  models.model_entry.model_entry_logout(request, (state, msg, data) => {
+    response.send({
+      code: state,
+      msg: msg,
+      data: data
+    })
+  })
+}
