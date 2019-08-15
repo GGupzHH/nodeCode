@@ -67,3 +67,7 @@ module.exports.model_entry_login = (request, cb) => {
     })
   }
 }
+module.exports.model_entry_logout = (request, cb) => {
+  console.log(11111)
+  cb(200, 'is ok', [])
+}
